@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import reducer from './reducers';
 import type { Store } from './types';
 
+require('./assets/spritesheet-cn.css');
+
 const store: Store = createStore(reducer);
 
 render(

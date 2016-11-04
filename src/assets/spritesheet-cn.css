@@ -1,0 +1,16 @@
+.sprite { background: url('spritesheet-cn.png') no-repeat top left; width: 286px; height: 285px;  } 
+.sprite.shuai-r { background-position: 0 0; width: 285px; height: 286px; } 
+.sprite.shi-r { background-position: 0 -296px; width: 287px; height: 286px; } 
+.sprite.xiang-r { background-position: 0 -592px; width: 287px; } 
+.sprite.ma-r { background-position: 0 -887px; width: 287px; } 
+.sprite.ju-r { background-position: 0 -1182px; width: 287px; } 
+.sprite.pao-r { background-position: 0 -1477px; width: 287px; } 
+.sprite.bing-r { background-position: 0 -1772px; } 
+.sprite.jiang-b { background-position: 0 -2067px; height: 286px; } 
+.sprite.shi-b { background-position: 0 -2363px; height: 286px; } 
+.sprite.xiang-b { background-position: 0 -2659px; height: 286px; } 
+.sprite.ma-b { background-position: 0 -2955px; height: 286px; } 
+.sprite.ju-b { background-position: 0 -3251px; height: 287px; } 
+.sprite.pao-b { background-position: 0 -3548px; height: 287px; } 
+.sprite.zu-b { background-position: 0 -3845px; }
+
