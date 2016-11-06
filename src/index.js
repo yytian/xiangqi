@@ -10,8 +10,11 @@ import type { Store } from './types';
 require('./assets/spritesheet-cn.css');
 
 const store: Store = createStore(reducer);
+const state = store.getState();
 
 render(
-  <Board />,
-  document.getElementById('root'),
+    <Provider store={store}>
+        <Board boardState={state.boardState} />
+    </Provider>,
+    document.getElementById('root'),
 );

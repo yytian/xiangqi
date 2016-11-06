@@ -1,34 +1,35 @@
 {
-  "name": "Xiangqi",
-  "version": "0.1.0",
-  "description": "React app for playing xiangqi (Chinese chess)",
-  "main": "index.js",
-  "author": "Jim Tian <yytian@uwaterloo.ca>",
-  "license": "MIT",
-  "dependencies": {
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-redux": "^4.4.5",
-    "redux": "^3.6.0"
-  },
-  "devDependencies": {
-    "babel-core": "^6.18.2",
-    "babel-jest": "^16.0.0",
-    "babel-loader": "^6.2.7",
-    "babel-plugin-transform-flow-strip-types": "^6.18.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
-    "css-loader": "^0.25.0",
-    "file-loader": "^0.9.0",
-    "flow-bin": "^0.33.0",
-    "jest": "^16.0.2",
-    "react-test-renderer": "^15.3.2",
-    "style-loader": "^0.13.1",
-    "webpack": "^1.13.3"
-  },
-  "scripts": {
-    "flow": "flow; test $? -eq 0 -o $? -eq 2",
-    "pack": "webpack",
-    "test": "jest"
-  }
+    "name": "Xiangqi",
+    "version": "0.1.0",
+    "description": "React app for playing xiangqi (Chinese chess)",
+    "main": "index.js",
+    "author": "Jim Tian <yytian@uwaterloo.ca>",
+    "license": "MIT",
+    "dependencies": {
+	"react": "^15.3.2",
+	"react-dom": "^15.3.2",
+	"react-redux": "^4.4.5",
+	"redux": "^3.6.0"
+    },
+    "devDependencies": {
+	"babel-core": "^6.18.2",
+	"babel-jest": "^16.0.0",
+	"babel-loader": "^6.2.7",
+	"babel-plugin-transform-flow-strip-types": "^6.18.0",
+	"babel-preset-es2015": "^6.18.0",
+	"babel-preset-react": "^6.16.0",
+	"css-loader": "^0.25.0",
+	"file-loader": "^0.9.0",
+	"flow-bin": "^0.33.0",
+	"jest": "^16.0.2",
+	"react-test-renderer": "^15.3.2",
+	"style-loader": "^0.13.1",
+	"webpack": "^1.13.3"
+    },
+    "scripts": {
+	"flow": "flow; test $? -eq 0 -o $? -eq 2",
+	"pack": "webpack",
+	"serve": "webpack && (cd bin; http-server)",
+	"test": "jest"
+    }
 }
