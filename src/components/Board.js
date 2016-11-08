@@ -9,11 +9,13 @@ type Props = {
 };
 
 const Board = ({boardState}: Props) => {
-    let content = boardState[0][0];
+    const squares = boardState.map((row) => {
+	return row.map((col) => {
+	    return <Square content={col} />
+	});
+    });
     
-    return <div>
-	<Square content={content} />
-    </div>;
+    return <div>{squares}</div>;
 };
 
 export default Board;

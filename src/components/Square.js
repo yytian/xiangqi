@@ -34,9 +34,9 @@ const Square = ({content}: Props) => {
     
     let spriteName = '';
     
-    if (content.owner = 'red') {
+    if (content.owner == 'red') {
 	spriteName = redMap[content.type];
-    } else if (content.owner = 'black') {
+    } else if (content.owner == 'black') {
 	spriteName = blackMap[content.type];
     }
 

@@ -10,7 +10,7 @@ function newBoard(): BoardState {
 	}
     }
 
-    b[0][0] = {type: 'general', owner: 'red'};
+    b[0][0] = {type: 'general', owner: 'black'};
 
     return b;
 }
