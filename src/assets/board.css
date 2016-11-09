@@ -1,0 +1,16 @@
+.board {
+    width: 900px;
+    height: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.square {
+    width: 100px;
+    height: 100px;
+}
+
+.square .piece {
+    z-index: 10;
+}

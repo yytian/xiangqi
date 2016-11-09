@@ -14,3 +14,9 @@
 .sprite.pao-b { background-position: 0 -3548px; height: 287px; } 
 .sprite.zu-b { background-position: 0 -3845px; }
 
+/* http://stackoverflow.com/a/16080995 */
+.sprite {
+    zoom: 0.29;
+    -moz-transform: scale(0.29);
+    -moz-transform-origin: 0 0;    
+}

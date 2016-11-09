@@ -7,6 +7,7 @@ import Game from './containers/Game';
 import reducer from './reducers';
 import type { Store } from './types';
 
+require('./assets/board.css');
 require('./assets/spritesheet-cn.css');
 
 const store: Store = createStore(reducer);

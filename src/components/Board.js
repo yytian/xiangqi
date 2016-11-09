@@ -15,7 +15,7 @@ const Board = ({boardState}: Props) => {
 	});
     });
     
-    return <div>{squares}</div>;
+    return <div className="board">{squares}</div>;
 };
 
 export default Board;

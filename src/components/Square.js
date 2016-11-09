@@ -27,22 +27,32 @@ const blackMap = {
     soldier: 'zu-b',
 }
 
-const Square = ({content}: Props) => {
-    if (content == null) {
-	return null;
-    }
-    
-    let spriteName = '';
-    
-    if (content.owner == 'red') {
-	spriteName = redMap[content.type];
-    } else if (content.owner == 'black') {
-	spriteName = blackMap[content.type];
+function getSpriteName(owner: 'red' | 'black', type: string) {
+    let spriteName = null;
+
+    if (owner == 'red') {
+	spriteName = redMap[type];
+    } else if (owner == 'black') {
+	spriteName = blackMap[type];
     }
 
-    const className = `sprite ${spriteName}`;
+    if (spriteName == null) {
+	throw new Error('Unrecognized sprite type');
+    } else {
+	return spriteName;
+    }
+}
+
+const Square = ({content}: Props) => {
+    let piece = null;
+
+    if (content != null) {
+	let spriteName = getSpriteName(content.owner, content.type);
+	const className = `piece sprite ${spriteName}`;
+	piece = <div className={className} />;
+    }
     
-    return <div className={className} />
+    return <div className="square">{piece}</div>
 };
 
 export default Square;
