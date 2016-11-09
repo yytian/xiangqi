@@ -1,4 +1,6 @@
 .board {
+    background: url('board.png') no-repeat top left;
+    background-size: contain;
     width: 900px;
     height: 1000px;
     display: flex;
