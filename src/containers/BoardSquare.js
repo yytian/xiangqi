@@ -22,13 +22,17 @@ function movePiece(fromRow: number, fromColumn: number, toRow: number, toColumn:
 const squareSource = {
     beginDrag(props: Props) {
 	return {x: props.x, y: props.y};
-    }
+    },
+
+    canDrag(props: Props, monitor) {
+	return props.content != null;
+    },
 };
 
 function sourceCollect(connect, monitor) {
     return {
 	connectDragSource: connect.dragSource(),
-	isDragging: monitor.isDragging()
+	connectDragPreview: connect.dragPreview(),
     }
 }
 
@@ -42,7 +46,6 @@ const squareTarget = {
 function targetCollect(connect, monitor) {
     return {
 	connectDropTarget: connect.dropTarget(),
-	isOver: monitor.isOver()
     };
 }
 
@@ -56,11 +59,10 @@ class BoardSquare extends React.Component {
     }
     
     render() {
-	const {connectDragSource, connectDropTarget} = this.props;
+	const {connectDragPreview, connectDragSource, connectDropTarget} = this.props;
 	
-	// I'm amazed this actually works...
 	return connectDropTarget(connectDragSource(
-		<div><Square content={this.props.content} /></div>
+		<div><Square connectDragPreview={connectDragPreview} content={this.props.content} /></div>
 	));
     }
 }

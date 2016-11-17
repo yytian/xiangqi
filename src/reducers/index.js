@@ -71,12 +71,15 @@ export default function app(state: ?State, action: Action): State {
 	return {boardState};
     }
 
-    const next = clone(state);
-
     switch(action.type) {
     case 'MOVE_PIECE':
-	const boardState = next.boardState;
-	boardState[action.to.row][action.to.column] = boardState[action.from.row][action.from.column];
+	const fromSquare = state.boardState[action.from.row][action.from.column];
+	if (fromSquare == null) {
+	    return state;
+	}
+	const next = clone(state);
+	next.boardState[action.from.row][action.from.column] = null;
+	next.boardState[action.to.row][action.to.column] = fromSquare;
 	return next;
     default:
 	throw new Error('Unrecognized action');

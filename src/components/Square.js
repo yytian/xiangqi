@@ -4,6 +4,7 @@ import React from 'react';
 import type { Side, SquareContent } from '../types';
 
 type Props = {
+    connectDragPreview: any,
     content: SquareContent,
 };
 
@@ -43,7 +44,7 @@ function getSpriteName(owner: Side, type: string) {
     }
 }
 
-const Square = ({content}: Props) => {
+const Square = ({connectDragPreview, content}: Props) => {
     let piece = null;
 
     if (content != null) {
@@ -51,8 +52,9 @@ const Square = ({content}: Props) => {
 	const className = `piece sprite ${spriteName}`;
 	piece = <div className={className} />;
     }
-    
-    return <div className="square">{piece}</div>
+
+    // Drag preview is broken on Chrome: https://github.com/gaearon/react-dnd/issues/552
+    return <div className="square">{connectDragPreview(piece)}</div>
 };
 
 export default Square;
