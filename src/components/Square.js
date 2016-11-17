@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 
-import type { SquareContent } from '../types';
+import type { Side, SquareContent } from '../types';
 
 type Props = {
     content: SquareContent,
@@ -27,7 +27,7 @@ const blackMap = {
     soldier: 'zu-b',
 }
 
-function getSpriteName(owner: 'red' | 'black', type: string) {
+function getSpriteName(owner: Side, type: string) {
     let spriteName = null;
 
     if (owner == 'red') {

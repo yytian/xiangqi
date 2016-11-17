@@ -12,8 +12,6 @@ const mapStateToProps = (state: State): BoardProps => {
   };
 };
 
-const connector: Connector<{}, BoardProps> = connect(
-    mapStateToProps,
-);
+const connector: Connector<{}, BoardProps> = connect(mapStateToProps);
 
 export default connector(Board);

@@ -1,9 +1,11 @@
 // @flow
 import type { Store as ReduxStore, Dispatch as ReduxDispatch } from 'redux'
 
+export type Side = 'red' | 'black';
+
 type PieceType = 'general' | 'advisor' | 'elephant' | 'horse' | 'chariot' | 'cannon' | 'soldier';
 
-type Piece = { type: PieceType, owner: 'red' | 'black' };
+type Piece = { type: PieceType, owner: Side };
 
 type Empty = null;
 
@@ -11,12 +13,14 @@ type SquareContent = Piece | Empty;
 
 type BoardState = Array<Array<SquareContent>>;
 
+type Position: {row: number, column: number}
+
 export type State = {
     board: BoardState,
 };
 
 export type Action =
-    { type: 'Placeholder' }
+    { type: 'MOVE_PIECE', from: Position, to: Position },
 ;
 
 export type Store = ReduxStore<State, Action>;

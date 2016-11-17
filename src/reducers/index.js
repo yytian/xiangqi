@@ -1,5 +1,14 @@
 // @flow
-import type { State, Action, BoardState } from '../types'
+import type { State, Action, BoardState } from '../types';
+
+function clone(state: State): State {
+    const copy = new Array(10);
+    for (let i = 0; i < 10; i++) {
+	copy[i] = state.boardState[i].slice(0);
+    }
+
+    return {boardState: copy};
+}
 
 function newBoard(): BoardState {
     const b = new Array(10); // Ten rows
@@ -58,6 +67,18 @@ function newBoard(): BoardState {
 const boardState = newBoard();
 
 export default function app(state: ?State, action: Action): State {
-    const s = state || {boardState};
-    return s;
+    if (state == null) {
+	return {boardState};
+    }
+
+    const next = clone(state);
+
+    switch(action.type) {
+    case 'MOVE_PIECE':
+	const boardState = next.boardState;
+	boardState[action.to.row][action.to.column] = boardState[action.from.row][action.from.column];
+	return next;
+    default:
+	throw new Error('Unrecognized action');
+    }
 }
