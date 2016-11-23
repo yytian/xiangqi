@@ -1,10 +1,13 @@
 // @flow
-import type { State, Action, BoardState } from '../types';
+import { isMoveLegal } from './Legality.js';
 
-function clone(state: State): State {
+import type { Side, State, Action, GameState } from '../types';
+
+function cloneGame(gameState: GameState): GameState {
+    const board = gameState.boardState;
     const copy = new Array(10);
     for (let i = 0; i < 10; i++) {
-	copy[i] = state.boardState[i].slice(0);
+	copy[i] = board[i].slice(0);
     }
 
     return {boardState: copy};
@@ -28,8 +31,8 @@ function newBoard(): BoardState {
     b[0][6] = {type: 'elephant', owner: 'black'};
     b[0][7] = {type: 'horse', owner: 'black'};
     b[0][8] = {type: 'chariot', owner: 'black'};
-    b[1][1] = {type: 'cannon', owner: 'black'};
-    b[1][7] = {type: 'cannon', owner: 'black'};
+    b[2][1] = {type: 'cannon', owner: 'black'};
+    b[2][7] = {type: 'cannon', owner: 'black'};
     b[3][0] = {type: 'soldier', owner: 'black'};
     b[3][1] = {type: 'soldier', owner: 'black'};
     b[3][2] = {type: 'soldier', owner: 'black'};
@@ -64,23 +67,32 @@ function newBoard(): BoardState {
     return b;
 }
 
-const boardState = newBoard();
+function nextMover(mover: Side): Side {
+    if (mover === 'red') {
+	return 'black';
+    } else if (mover === 'black') {
+	return 'red';
+    } else {
+	throw new Error('Invalid mover');
+    }
+}
 
 export default function app(state: ?State, action: Action): State {
     if (state == null) {
-	return {boardState};
+	return {gameState: {boardState: newBoard(), nextMover: 'red'}};
     }
 
     switch(action.type) {
     case 'MOVE_PIECE':
-	const fromSquare = state.boardState[action.from.row][action.from.column];
-	if (fromSquare == null) {
+	if (!isMoveLegal(state.gameState, action.from, action.to)) {
 	    return state;
 	}
-	const next = clone(state);
+	const movingPiece = state.gameState.boardState[action.from.row][action.from.column];
+	const next = cloneGame(state.gameState);
 	next.boardState[action.from.row][action.from.column] = null;
-	next.boardState[action.to.row][action.to.column] = fromSquare;
-	return next;
+	next.boardState[action.to.row][action.to.column] = movingPiece;
+	next.nextMover = nextMover(state.gameState.Nextmover);
+	return {...state, gameState: next};
     default:
 	throw new Error('Unrecognized action');
     }

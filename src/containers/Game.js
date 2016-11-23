@@ -8,7 +8,7 @@ import type { BoardProps } from '../components/Board';
 
 const mapStateToProps = (state: State): BoardProps => {
   return {
-      boardState: state.boardState,
+      boardState: state.gameState.boardState,
   };
 };
 

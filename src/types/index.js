@@ -13,10 +13,15 @@ type SquareContent = Piece | Empty;
 
 type BoardState = Array<Array<SquareContent>>;
 
-type Position: {row: number, column: number}
+export type GameState = {
+    board: BoardState,
+    nextMover: Side,
+}
+
+export type Position: {row: number, column: number}
 
 export type State = {
-    board: BoardState,
+    gameState: GameState,
 };
 
 export type Action =
