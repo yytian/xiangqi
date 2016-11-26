@@ -10,7 +10,7 @@ function cloneGame(gameState: GameState): GameState {
 	copy[i] = board[i].slice(0);
     }
 
-    return {boardState: copy};
+    return {...gameState, boardState: copy, generalPosMap: new Map(gameState.generalPosMap)};
 }
 
 function newBoard(): BoardState {
@@ -79,7 +79,12 @@ function nextMover(mover: Side): Side {
 
 export default function app(state: ?State, action: Action): State {
     if (state == null) {
-	return {gameState: {boardState: newBoard(), nextMover: 'red'}};
+	const boardState = newBoard();
+	const generalPosMap = new Map();
+	generalPosMap.set('red', {row: 9, column: 4});
+	generalPosMap.set('black', {row: 0, column: 4});
+	const nextMover = 'red';
+	return {gameState: {boardState, generalPosMap, nextMover}};
     }
 
     switch(action.type) {
@@ -91,7 +96,10 @@ export default function app(state: ?State, action: Action): State {
 	const next = cloneGame(state.gameState);
 	next.boardState[action.from.row][action.from.column] = null;
 	next.boardState[action.to.row][action.to.column] = movingPiece;
-	next.nextMover = nextMover(state.gameState.Nextmover);
+	next.nextMover = nextMover(state.gameState.nextMover);
+	if (movingPiece.type === 'general') {
+	    next.generalPosMap.set(movingPiece.owner, action.to);
+	}
 	return {...state, gameState: next};
     default:
 	throw new Error('Unrecognized action');
